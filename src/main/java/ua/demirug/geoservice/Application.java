@@ -9,17 +9,15 @@ import java.net.InetSocketAddress;
 public class Application {
 
     public static void main(String[] args) throws IOException {
-        int serverPort = 8000;
-        HttpServer server = HttpServer.create(new InetSocketAddress(serverPort), 0);
+        InetSocketAddress address = new InetSocketAddress(8000);
+        HttpServer server = HttpServer.create(address, 0);
 
-        RegistrationHandler registrationHandler = new RegistrationHandler();
-
-        server.createContext("/register",  registrationHandler::handle);
-        //server.createContext("/get",  registrationHandler::handle);
-        //server.createContext("/add",  registrationHandler::handle);
+        server.createContext("/register",  new RegistrationHandler()::handle);
 
         server.setExecutor(null);
         server.start();
+
+        System.out.println("Server started at " + address.getHostString() + ":" + address.getPort());
     }
 
 }
