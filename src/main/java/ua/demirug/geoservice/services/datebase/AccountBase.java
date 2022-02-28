@@ -21,11 +21,11 @@ public class AccountBase extends Database {
     }
 
     public void insertUser(User user) {
-        this.execute("INSERT INTO `geo_users` (`uuid`, `datetime`) values ('" + user.getUuid().toString() + "','" + user.getLast_request().toString() +  "')");
+        this.execute("INSERT INTO `geo_users` (`uuid`, `datetime`) values ('" + user.getUuid().toString() + "','" + user.getLast_request() +  "')");
     }
 
     public void updateUser(User user) {
-        this.execute("UPDATE `geo_users` SET `datetime` = '" + user.getLast_request().toString() + "', `x`='" + user.getLocation().getX() + "', `y`='" + user.getLocation().getY() + "' WHERE `uuid`='" + user.getUuid().toString() + "'");
+        this.execute("UPDATE `geo_users` SET `datetime` = '" + user.getLast_request() + "', `x`='" + user.getLocation().getX() + "', `y`='" + user.getLocation().getY() + "' WHERE `uuid`='" + user.getUuid().toString() + "'");
     }
 
     public User getUser(String uuid) {
