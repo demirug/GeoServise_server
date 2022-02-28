@@ -1,27 +1,22 @@
-package ua.demirug.geoservice.services;
+package ua.demirug.geoservice.services.datebase;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class Database {
-
-    private static Database dataBase;
-
-    private Database() {
-        this.getConnection();
-        System.out.println("Database connected successful");
-    }
+public abstract class Database {
 
     private Connection connection;
+
+    public abstract String getPath();
 
     public Connection getConnection() {
         try {
             if (this.connection != null && !this.connection.isClosed() && this.connection.isValid(20)) {
                 return this.connection;
             }
-            this.connection = DriverManager.getConnection("jdbc:sqlite:users.db");
+            this.connection = DriverManager.getConnection("jdbc:sqlite:" + this.getPath());
         }
         catch (SQLException ex) {
             ex.printStackTrace();
@@ -38,17 +33,6 @@ public class Database {
         catch (SQLException ex) {
             ex.printStackTrace();
         }
-    }
-
-    public void init() {
-        this.execute("CREATE TABLE IF NOT EXISTS geo_users (uuid varchar(36) PRIMARY KEY, datetime DATETIME, x FLOAT, y FLOAT)");
-    }
-
-    public static Database getInstance() {
-        if (Database.dataBase == null) {
-            Database.dataBase = new Database();
-        }
-        return Database.dataBase;
     }
 
 }
