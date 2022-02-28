@@ -2,7 +2,7 @@ package ua.demirug.geoservice;
 
 import com.sun.net.httpserver.HttpServer;
 import ua.demirug.geoservice.handlers.RegistrationHandler;
-import ua.demirug.geoservice.services.Database;
+import ua.demirug.geoservice.services.datebase.AccountBase;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -10,7 +10,7 @@ import java.net.InetSocketAddress;
 public class Application {
 
     public static void main(String[] args) throws IOException {
-        Database.getInstance().init();
+        AccountBase.getInstance().init();
         InetSocketAddress address = new InetSocketAddress(8000);
         HttpServer server = HttpServer.create(address, 0);
 
