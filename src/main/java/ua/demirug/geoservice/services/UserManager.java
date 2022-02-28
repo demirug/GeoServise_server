@@ -29,6 +29,14 @@ public class UserManager {
         return user;
     }
 
+    public static User getUser(String uuid) {
+        try {
+            return getUser(UUID.fromString(uuid));
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public static User getUser(UUID uuid) {
         User user = UserManager.userList.get(uuid);
         if (user == null) {
