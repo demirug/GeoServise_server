@@ -2,12 +2,16 @@ package ua.demirug.geoservice.user;
 
 import lombok.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-@Value
+@Getter
+@Setter
 @Builder
 public class User {
+
+   public static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/M/yyyy HH:mm:ss z");
 
     UUID uuid;
 
@@ -17,7 +21,7 @@ public class User {
     Location location;
 
     public String  getLast_request() {
-        return this.last_request.toString();
+        return dateFormat.format(this.last_request);
     }
 
 }
