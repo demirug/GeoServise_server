@@ -10,7 +10,7 @@ import java.net.InetSocketAddress;
 public class Application {
 
     public static void main(String[] args) throws IOException {
-        Database.getInstance();
+        Database.getInstance().init();
         InetSocketAddress address = new InetSocketAddress(8000);
         HttpServer server = HttpServer.create(address, 0);
 

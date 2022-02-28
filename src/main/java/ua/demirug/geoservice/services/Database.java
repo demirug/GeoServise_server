@@ -40,6 +40,10 @@ public class Database {
         }
     }
 
+    public void init() {
+        this.execute("CREATE TABLE IF NOT EXISTS geo_users (uuid varchar(36) PRIMARY KEY, datetime DATETIME, x FLOAT, y FLOAT)");
+    }
+
     public static Database getInstance() {
         if (Database.dataBase == null) {
             Database.dataBase = new Database();
