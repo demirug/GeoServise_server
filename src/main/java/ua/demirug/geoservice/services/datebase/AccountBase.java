@@ -5,6 +5,7 @@ import ua.demirug.geoservice.user.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.UUID;
 
 public class AccountBase extends Database {
@@ -30,11 +31,11 @@ public class AccountBase extends Database {
 
     public User getUser(String uuid) {
         try {
-            ResultSet result = this.getConnection().createStatement().executeQuery("SELECT * FROM geo_users WHERE uuid = " + uuid);
+            ResultSet result = this.getConnection().createStatement().executeQuery("SELECT * FROM `geo_users` WHERE uuid = '" + uuid + "'");
             if (result.next()) {
                 return User.builder()
                         .uuid(UUID.fromString(result.getString("uuid")))
-                            .last_request(result.getDate("datetime"))
+                            .last_request(User.dateFormat.parse(result.getString("datetime")))
                             .location(Location.builder()
                                     .x(result.getFloat("x"))
                                     .y(result.getFloat("y"))
@@ -42,7 +43,7 @@ public class AccountBase extends Database {
                             )
                             .build();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ParseException e) {
             e.printStackTrace();
         }
         return null;
