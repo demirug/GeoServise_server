@@ -1,6 +1,7 @@
 package ua.demirug.geoservice.handlers;
 
 import com.sun.net.httpserver.HttpExchange;
+import ua.demirug.geoservice.Log;
 import ua.demirug.geoservice.resonses.MessageResponse;
 import ua.demirug.geoservice.resonses.Response;
 
@@ -43,7 +44,7 @@ public abstract class Handler {
             throw new UnsupportedOperationException();
         }
 
-        System.out.println("POST " + exchange.getRequestURI());
+        Log.info("POST " + exchange.getRequestURI());
 
         Response response = this.handle(exchange);
         response = response != null ? response : new MessageResponse("No response was given");

@@ -24,7 +24,7 @@ public class Application {
         server.setExecutor(null);
         server.start();
 
-        System.out.println("Server started at " + address.getHostString() + ":" + address.getPort());
+        Log.info("Server started at " + address.getHostString() + ":" + address.getPort());
 
     }
 

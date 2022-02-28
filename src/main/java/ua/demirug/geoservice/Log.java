@@ -11,7 +11,19 @@ public class Log {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("[HH:mm:ss dd/M/yyyy]");
 
-    public static void print(String msg, int loglevel) {
+    public static void info(String msg) {
+        Log.print(msg, 0);
+    }
+
+    public static void warn(String msg) {
+        Log.print(msg, 1);
+    }
+
+    public static void error(String msg) {
+        Log.print(msg, 2);
+    }
+
+    private static void print(String msg, int loglevel) {
         StringBuilder sb = new StringBuilder(dateFormat.format(new Date()));
         switch (loglevel) {
             case LEVEL_WARNING -> sb.append("\033[0;33m"); //Append yellow color to console

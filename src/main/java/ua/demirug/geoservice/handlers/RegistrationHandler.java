@@ -2,6 +2,7 @@ package ua.demirug.geoservice.handlers;
 
 import com.sun.net.httpserver.HttpExchange;
 
+import ua.demirug.geoservice.Log;
 import ua.demirug.geoservice.resonses.RegisterResponse;
 import ua.demirug.geoservice.resonses.Response;
 import ua.demirug.geoservice.services.UserManager;
@@ -18,7 +19,7 @@ public class RegistrationHandler extends Handler {
     public Response handle(HttpExchange exchange) {
 
         User user = UserManager.registerUser(UUID.randomUUID());
-
+        Log.warn("Registered user " + user.getUuid());
         return new RegisterResponse(user.getUuid().toString());
     }
 

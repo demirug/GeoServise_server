@@ -1,5 +1,6 @@
 package ua.demirug.geoservice.services.datebase;
 
+import ua.demirug.geoservice.Log;
 import ua.demirug.geoservice.user.Location;
 import ua.demirug.geoservice.user.User;
 
@@ -14,7 +15,7 @@ public class AccountBase extends Database {
 
     private AccountBase() {
         this.getConnection();
-        System.out.println("Database connected successful");
+        Log.info("Database connected successful");
     }
 
     public void init() {
