@@ -1,6 +1,7 @@
 package ua.demirug.geoservice.services.datebase;
 
 import ua.demirug.geoservice.Log;
+import ua.demirug.geoservice.config.ConfigProvider;
 import ua.demirug.geoservice.user.Location;
 import ua.demirug.geoservice.user.User;
 
@@ -60,6 +61,6 @@ public class AccountBase extends Database {
 
     @Override
     public String getPath() {
-        return "accounts.db";
+        return ConfigProvider.getInstance().getString("db-name");
     }
 }
